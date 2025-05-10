@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
+	"github.com/neurlang/classifier/parallel"
 )
 
 // A Cluster which data points gravitate around
@@ -103,6 +104,20 @@ func (c Clusters) Reset() {
 	for i := 0; i < len(c); i++ {
 		c[i].Observations = Observations{}
 	}
+}
+
+// RecenterThreads recenters all clusters
+func (c Clusters) RecenterThreads(t int) {
+	parallel.ForEach(len(c), t, func (i int) {
+		c[i].Recenter()
+	})
+}
+
+// ResetThreads clears all point assignments
+func (c Clusters) ResetThreads(t int) {
+	parallel.ForEach(len(c), t, func (i int) {
+		c[i].Observations = Observations{}
+	})
 }
 
 // PointsInDimension returns all coordinates in a given dimension
