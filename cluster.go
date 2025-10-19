@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
-	"github.com/neurlang/classifier/parallel"
+	"github.com/Nemo08/classifier/parallel"
 )
 
 // A Cluster which data points gravitate around
