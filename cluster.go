@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
+
 	"github.com/Nemo08/classifier/parallel"
 )
 
@@ -26,7 +27,7 @@ func New(k int, dataset Observations) (Clusters, error) {
 		return c, fmt.Errorf("k must be greater than 0")
 	}
 
-	rand.Seed(time.Now().UnixNano())
+	rand.Seed(1760790397)
 	for i := 0; i < k; i++ {
 		var p Coordinates
 		for j := 0; j < len(dataset[0].Coordinates()); j++ {
@@ -108,14 +109,14 @@ func (c Clusters) Reset() {
 
 // RecenterThreads recenters all clusters
 func (c Clusters) RecenterThreads(t int) {
-	parallel.ForEach(len(c), t, func (i int) {
+	parallel.ForEach(len(c), t, func(i int) {
 		c[i].Recenter()
 	})
 }
 
 // ResetThreads clears all point assignments
 func (c Clusters) ResetThreads(t int) {
-	parallel.ForEach(len(c), t, func (i int) {
+	parallel.ForEach(len(c), t, func(i int) {
 		c[i].Observations = Observations{}
 	})
 }
