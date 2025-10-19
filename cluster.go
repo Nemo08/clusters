@@ -3,7 +3,6 @@ package clusters
 import (
 	"fmt"
 	"math/rand"
-	"time"
 
 	"github.com/Nemo08/classifier/parallel"
 )
